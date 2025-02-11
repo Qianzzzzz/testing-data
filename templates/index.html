@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Test Data Viewer</title>
+    <style>
+        .table { width: 80%; margin: auto; border-collapse: collapse; }
+        .table th, .table td { border: 1px solid black; padding: 8px; text-align: left; }
+        .table th { background-color: #f2f2f2; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Product Test Data Viewer</h1>
+    <form method="POST" style="text-align: center;">
+        <label for="product_name">Enter Product Name:</label>
+        <input type="text" name="product_name" value="{{ product_name }}" required>
+    
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" value="{{ selected_date }}">
+    
+        <label for="shift">Select Shift:</label>
+        <select name="shift">
+            <option value="full_day" {% if shift == "full_day" %}selected{% endif %}>Full Day</option>
+            <option value="day_shift" {% if shift == "day_shift" %}selected{% endif %}>Day Shift (00:00 - 15:00)</option>
+            <option value="night_shift" {% if shift == "night_shift" %}selected{% endif %}>Night Shift (15:00 - 23:59)</option>
+        </select>
+    
+        <button type="submit">Submit</button>
+    </form>
+    
+    <!-- Render the table -->
+    {{ table_html|safe }}
+    
+</body>
+</html>
